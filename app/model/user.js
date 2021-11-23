@@ -3,21 +3,18 @@ const db = require('../../config/connection');
 const User = function(){
 	this.id;
 	this.name;
+	this.store;
 	this.email;
-	this.phone;
 	this.password;
-	this.birth;
-	this.department;
-	this.role;
-	this.access = '000-000' //no access;
-};
+	this.access;
 
-User.save = (user) => {
-	let query = "INSERT INTO cms_wt_erp.user (name, email, password) values ('"
-        +user.name+"', '"
-        +user.email+"', '"
-        +user.password+"')";
-    return db(query);
+	this.save = () => {
+		let query = "INSERT INTO cms_wt_erp.user (name, email, password) values ('"
+	        +this.name+"', '"
+	        +this.email+"', '"
+	        +this.password+"')";
+	    return db(query);
+	};
 };
 
 // User.updateName = (user) => {

@@ -1,7 +1,7 @@
 {
-  "name": "jariomilitar",
+  "name": "Cotalogo",
   "version": "1.0.0",
-  "description": "JA Rio Militar websystem made by WiseCorp.",
+  "description": "Cotalogo websystem made by WiseCorp.",
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -21,13 +21,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tijariomilitar/jariomilitar.git"
+    "url": "git+https://github.com/tijariomilitar/Cotalogo.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tijariomilitar/jariomilitar/issues"
+    "url": "https://github.com/tijariomilitar/Cotalogo/issues"
   },
-  "homepage": "https://github.com/tijariomilitar/jariomilitar#readme"
+  "homepage": "https://github.com/tijariomilitar/Cotalogo#readme"
 }

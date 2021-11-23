@@ -1,4 +1,3 @@
-
 const User = require('../model/user');
 const userController = require('./user');
 
@@ -25,9 +24,9 @@ const homeController = {
 		res.redirect('/');
 	},
 	signup: async (req, res) => {
-		if(!await userController.verifyAccess(req, res, ['adm'])){
-			return res.redirect('/');
-		};
+		// if(!await userController.verifyAccess(req, res, ['adm'])){
+		// 	return res.redirect('/');
+		// };
 		res.render('user/signup', { user: req.user, message: req.flash('signupMessage')});
 	},
 	successfulSignup: (req, res) => {
