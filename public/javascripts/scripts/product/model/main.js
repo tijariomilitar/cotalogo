@@ -23,12 +23,8 @@ Product.findById = async (id) => {
 	return response.product[0];
 };
 
-Product.filter = async product => {
-	let response = await fetch("/product/filter", {
-		method: "POST",
-		headers: {'Content-Type': 'application/json'},
-	    body: JSON.stringify({ product })
-	});
+Product.filter = async (product) => {
+	let response = await fetch("/product/filter?code="+product.code+"&name="+product.name+"&color="+product.color+"&size="+product.size+"&brand="+product.brand);
 	response = await response.json();
 
 	if(API.verifyResponse(response)){ return false };
@@ -45,4 +41,15 @@ Product.delete = async (id) => {
 	alert(response.done);
 	
 	return true;
+};
+
+Product.color = {};
+
+Product.color.list = async () => {
+	let response = await fetch("/product/colorList");
+	response = await response.json();
+	
+	if(API.verifyResponse(response)){ return false };
+	
+	return response.colors;
 };

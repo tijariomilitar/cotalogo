@@ -17,7 +17,6 @@ User.save = (user) => {
         +user.name+"', '"
         +user.email+"', '"
         +user.password+"')";
-    console.log(query);
     return db(query);
 };
 
@@ -73,7 +72,14 @@ User.updatePassword = (user) => {
 };
 
 User.updateInfo = (user) => {
-	let query = "UPDATE cms_wt_erp.user SET email='"+user.email+"' WHERE id ='"+user.id+"';";
+	let query = "";
+	if(user.email && user.birth){
+		query = "UPDATE cms_wt_erp.user SET email='"+user.email+"', birth='"+user.birth+"' WHERE id='"+user.id+"';";
+	} else if(user.email && !user.birth){
+		query = "UPDATE cms_wt_erp.user SET email='"+user.email+"' WHERE id='"+user.id+"';";
+	} else if(!user.email && user.birth){
+		query = "UPDATE cms_wt_erp.user SET birth='"+user.birth+"' WHERE id='"+user.id+"';";
+	};
 	return db(query);
 };
 

@@ -52,7 +52,8 @@ const userController = {
 
 		const user = {
 			id: req.user.id,
-			email: req.body.user.email
+			email: req.body.user_email,
+			birth: req.body.user_birth
 		};
 
 		try {
@@ -61,7 +62,7 @@ const userController = {
 				if(row.length){ return res.send({ msg: "Este e-mail já está cadastrado." })};
 			};
 			row = await User.updateInfo(user);
-			res.send({ done: "Informações atualizadas com sucesso.", user });
+			res.send({ done: "Informações atualizadas com sucesso." });
 		} catch (err) {
 			console.log(err);
 			res.send({ msg: "Ocorreu um erro ao atualizar suas informações, favor contatar o suporte." });
@@ -72,18 +73,17 @@ const userController = {
 			return res.send({ unauthorized: "Você não tem permissão para realizar esta ação!" });
 		};
 
-		let user = {
-			id: req.user.id,
-			password: bcrypt.hashSync(req.body.user.password, null, null),
-			password_confirm: bcrypt.hashSync(req.body.user.password_confirm, null, null),
-		}
-
-		if(!req.body.user.password || req.body.user.password.length < 4){ return res.send({ msg: 'Senha inválida.' }); };
-		if(req.body.user.password !== req.body.user.password_confirm){ return res.send({ msg: 'As senhas não correspondem.' }); }
+		if(!req.body.user_password){
+			return res.send({ msg: 'Os campos devem ser preenchidos' });
+		};
 
 		try {
+			const user = {
+				id: req.user.id,
+				password: bcrypt.hashSync(req.body.user_password, null, null) 
+			};
 			let row = await User.updatePassword(user);
-			res.send({ done: "Senha alterada com sucesso.", user });
+			res.send({ done: "Senha alterada com sucesso." });
 		} catch (err) {
 			console.log(err);
 			res.send({ msg: "Ocorreu um erro ao alterar sua senha, favor contatar o suporte." });

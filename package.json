@@ -1,7 +1,7 @@
 {
-  "name": "cotalogo_cms",
+  "name": "jariomilitar",
   "version": "1.0.0",
-  "description": "A monolitic nodejs-ejs-mysql framework to manage cotalogo.",
+  "description": "JA Rio Militar websystem made by WiseCorp.",
   "scripts": {
     "start": "node ./bin/www"
   },
@@ -21,13 +21,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hlyras/comercial_model.git"
+    "url": "git+https://github.com/tijariomilitar/jariomilitar.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hlyras/comercial_model/issues"
+    "url": "https://github.com/tijariomilitar/jariomilitar/issues"
   },
-  "homepage": "https://github.com/hlyras/comercial_model#readme"
+  "homepage": "https://github.com/tijariomilitar/jariomilitar#readme"
 }

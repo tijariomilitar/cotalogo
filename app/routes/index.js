@@ -2,21 +2,25 @@ const router = require("express").Router();
 const lib = require('jarmlib');
 
 const homeController = require("../controller/home");
+const landingPageController = require('../controller/landing_page');
 
 router.get("/", lib.route.toHttps, homeController.index);
+router.get("/info", lib.route.toHttps, homeController.info);
+router.get("/colete-numero-1", landingPageController.number_1);
+router.get("/meu-produto", landingPageController.myProduct);
 
-router.get("/login", lib.route.toHttps, homeController.login);
-router.get("/signup", lib.route.toHttps, homeController.signup);
-router.get("/logout", lib.route.toHttps, homeController.logout);
+router.get("/blackout", lib.route.toHttps, landingPageController.blackout);
+router.get("/lancamento-da-semana", lib.route.toHttps, landingPageController.lancamento_da_semana);
 
-router.use("/user", require("./user"));
+router.get("/login", homeController.login);
+router.get("/signup", homeController.signup);
+router.get("/logout", homeController.logout);
+
 router.use("/admin", require("./admin"));
-router.use("/department", require("./department"));
+router.use("/user", require("./user"));
+router.use("/lead", require("./lead"));
 router.use("/product", require("./product"));
-router.use("/feedstock", require("./feedstock"));
-router.use("/customer", require("./customer"));
-router.use("/sale", require("./sale"));
-router.use("/ecommerce", require("./ecommerce"));
-router.use("/financial", require("./financial"));
+router.use("/landing-page", require("./landing_page"));
+router.use("/catalogo", require("./catalog"));
 
 module.exports = router;

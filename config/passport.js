@@ -34,8 +34,6 @@ passport.use(
         if (user.length) {
             return done(null, false, req.flash('signupMessage', 'Este usuário já está cadastrado.'));
         } else {
-            
-            
             if(req.body.password !== req.body.confirmPassword){
                 return done(null, false, req.flash('signupMessage', 'Senhas Não correspondem.'));
             } else {
