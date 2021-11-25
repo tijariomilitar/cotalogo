@@ -25,11 +25,13 @@ passport.use(
         passReqToCallback : true
     },
     async (req, email, password, done) => {
-        let user = await User.findByEmail(req.body.email);
+        let user = await User.findByEmail(email);
 
-        if(!req.body.name){
-            return done(null, false, req.flash('signupMessage', 'É necessário preencher todos os campos.'));
-        };
+        if(!req.body.name){ return done(null, false, req.flash('signupMessage', 'É necessário preencher seu nome completo.')); };
+        if(!req.body.store){ return done(null, false, req.flash('signupMessage', 'É necessário preencher o nome do seu negócio.')); };
+        if(!req.body.email){ return done(null, false, req.flash('signupMessage', 'É necessário preencher o seu e-mail.')); };
+        if(!req.body.password){ return done(null, false, req.flash('signupMessage', 'É necessário preencher a senha.')); };
+        if(!req.body.password != req.body.passwordConfirm){ return done(null, false, req.flash('signupMessage', 'É necessário preencher a senha.')); };
 
         if (user.length) {
             return done(null, false, req.flash('signupMessage', 'Este usuário já está cadastrado.'));
@@ -40,9 +42,9 @@ passport.use(
                 const newUser = {
                     name: req.body.name,
                     email: req.body.email,
-                    password: bcrypt.hashSync(req.body.password, null, null),
-                    phone: req.body.phone
+                    password: bcrypt.hashSync(req.body.password, null, null)
                 };
+
                 try {
                     await User.save(newUser);
                     return done(null, false, req.flash('signupMessage', 'Colaborador(a) '+req.body.name+' cadastrado(a) com sucesso!'));

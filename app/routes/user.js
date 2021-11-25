@@ -12,10 +12,7 @@ router.post('/login', passport.authenticate('local-login', {
 	failureFlash: true
 }), homeController.successfulLogin);
 
-router.post('/signup', passport.authenticate('local-signup', { 
-	failureRedirect: '/signup',
-	failureFlash: true
-}), homeController.successfulSignup);
+router.post('/signup', homeController.successfulSignup);
 
 router.get('/list', userController.list);
 router.post('/show', userController.show);

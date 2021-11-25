@@ -1,21 +1,39 @@
 <html>
 	<head>
 		<% include ./../partials/head %>
+		<style type="text/css">
+			.btn-act {
+				background-color:#356ae6;
+				color:#fff;
+			}
+
+			.btn-act:hover {
+				background-color:#245ae5;
+				color:#fff;
+			}
+		</style>
 	</head>
 	<body>
-		<% include ./../partials/header %>
-		<section class="container h-center">
+		<section class="container" style="background-color:#000;color:var(--strong)">
+			<div class="mobile-box a11 center"></div>
+			<div class="mobile-box a7-11 em15 bold lucida-grande padding-3 center noselect">Cotalogo</div>
+			<div class="mobile-box a11 center">
+				<a><img class='icon size-40 padding-5' onclick="window.location.href='/login'" src="/images/icon/login.png"></a>
+			</div>
+		</section>
+		<!-- <% include ./../partials/header %> -->
+		<section class="container h-center margin-top-50">
 			<% if (message.length > 0) { %>
 			    <div class="alert-msg"><%= message %></div>
 			<% } %>
-			<form action="/user/signup" class="box b3 container ground margin-top-15 padding-10" method="post">
-				<div class="box b1 underline georgia margin-top-10 center">Cadastre suas informações e tenha 30 dias grátis para utilizar seus catálogos!</div>
-				<input type="text" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" name="name" maxlength="60" autocomplete="off" placeholder="Nome Completo">
-				<input type="text" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" name="name" maxlength="60" autocomplete="off" placeholder="Nome da Empresa">
-				<input type="email" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" name="email" id="email" maxlength="60" autocomplete="off" placeholder="E-mail">
-				<input type="password" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" name="password" maxlength="45" autocomplete="off" placeholder="Senha">
-				<input type="password" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" name="confirmPassword" maxlength="45" autocomplete="off" placeholder="Confirmar senha">
-				<button type="submit" class="box b1 submit-generic border-bottom margin-top-10">Cadastrar</button>
+			<form id="signup-form" class="box b3 container ground margin-top-15 padding-10">
+				<div class="box b1 underline georgia margin-top-10 center noselect">Cadastre suas informações e tenha 30 dias grátis para utilizar seus catálogos!</div>
+				<input type="text" name="name" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" maxlength="60" autocomplete="off" placeholder="Nome Completo">
+				<input type="text" name="store" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" maxlength="60" autocomplete="off" placeholder="Nome da Empresa">
+				<input type="email" name="email" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" id="email" maxlength="60" autocomplete="off" placeholder="E-mail">
+				<input type="password" name="password" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" maxlength="45" autocomplete="off" placeholder="Senha">
+				<input type="password" name="password-confirm" class="box b1 em11 georgia border-bottom padding-10 margin-top-5" maxlength="45" autocomplete="off" placeholder="Confirmar senha">
+				<input type="submit" class="box b1 submit-generic border-bottom margin-top-10 noselect" value="Cadastrar">
 			</form>
 		</section>
 	</body>

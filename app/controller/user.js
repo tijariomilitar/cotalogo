@@ -20,74 +20,23 @@ const userController = {
 		};
 		return false;
 	},
-	list: async (req, res) => {
-		if(!await userController.verifyAccess(req, res, ['dvp','prp','spt','grf','grl','crd'])){
-			return res.send({ unauthorized: "Você não tem permissão para realizar esta ação!" });
-		};
-		try {
-			let users = await User.list();
-			res.send({ users: users });
-		} catch (err) {
-			console.log(err);
-			res.send({ msg: "Ocorreu um erro ao listar os usuários, favor contatar o suporte." });
-		};
+	login: (req, res) => {
+		if(req.user){ return res.redirect("/"); };
+		
+		res.render('login', { message: req.flash('loginMessage')});
 	},
-	show: async (req, res) => {
-		if(!await userController.verifyAccess(req, res, ['dvp','prp','spt','grf','grl','crd'])){
-			return res.send({ unauthorized: "Você não tem permissão para realizar esta ação!" });
-		};
-
-		try {
-			let user = await User.findById(req.body.user_id);
-			res.send({ user });
-		} catch (err) {
-			console.log(err);
-			res.send({ msg: "Ocorreu um erro ao mostrar o usuário." });
-		};
+	successfulLogin: (req, res) => {
+		res.redirect('/');
 	},
-	updateInfo: async (req, res) => {
-		if(!req.isAuthenticated()){
-			res.send({ unauthorized: "Você não tem permissão para realizar esta ação!" });
-		};
-
-		const user = {
-			id: req.user.id,
-			email: req.body.user_email,
-			birth: req.body.user_birth
-		};
-
-		try {
-			if(user.email){
-				var row = await User.findByEmail(user.email);
-				if(row.length){ return res.send({ msg: "Este e-mail já está cadastrado." })};
-			};
-			row = await User.updateInfo(user);
-			res.send({ done: "Informações atualizadas com sucesso." });
-		} catch (err) {
-			console.log(err);
-			res.send({ msg: "Ocorreu um erro ao atualizar suas informações, favor contatar o suporte." });
-		};
+	signup: async (req, res) => {
+		res.render('user/signup', { user: req.user, message: req.flash('signupMessage')});
 	},
-	updatePassword: async (req, res) => {
-		if(!req.isAuthenticated()){
-			return res.send({ unauthorized: "Você não tem permissão para realizar esta ação!" });
-		};
-
-		if(!req.body.user_password){
-			return res.send({ msg: 'Os campos devem ser preenchidos' });
-		};
-
-		try {
-			const user = {
-				id: req.user.id,
-				password: bcrypt.hashSync(req.body.user_password, null, null) 
-			};
-			let row = await User.updatePassword(user);
-			res.send({ done: "Senha alterada com sucesso." });
-		} catch (err) {
-			console.log(err);
-			res.send({ msg: "Ocorreu um erro ao alterar sua senha, favor contatar o suporte." });
-		};
+	successfulSignup: (req, res) => {
+		res.redirect('/');
+	},
+	logout: (req, res) => {
+		req.logout();
+		res.redirect('/');
 	}
 };
 

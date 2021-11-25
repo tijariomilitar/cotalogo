@@ -1,4 +1,3 @@
-const User = {};
 User.controller = {};
 
 User.controller.signup = document.getElementById("signup-form");
