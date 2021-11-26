@@ -13,5 +13,8 @@ if(User.controller.signup){
 		};
 
 		console.log(user);
+
+		let response = await API.response(User.signup, user);
+		console.log(response);
 	});
 }

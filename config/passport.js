@@ -32,6 +32,7 @@ passport.use(
         if(!req.body.email){ return done(null, false, req.flash('signupMessage', 'É necessário preencher o seu e-mail.')); };
         if(!req.body.password){ return done(null, false, req.flash('signupMessage', 'É necessário preencher a senha.')); };
         if(!req.body.password != req.body.passwordConfirm){ return done(null, false, req.flash('signupMessage', 'É necessário preencher a senha.')); };
+        return done(null, false, req.flash('signupMessage', 'TESTANDO'));
 
         if (user.length) {
             return done(null, false, req.flash('signupMessage', 'Este usuário já está cadastrado.'));
@@ -47,7 +48,7 @@ passport.use(
 
                 try {
                     await User.save(newUser);
-                    return done(null, false, req.flash('signupMessage', 'Colaborador(a) '+req.body.name+' cadastrado(a) com sucesso!'));
+                    return done(null, newUser, req.flash('signupMessage', 'Colaborador(a) '+req.body.name+' cadastrado(a) com sucesso!'));
                 } catch (err) {
                     console.log(err);
                     return done(null, false, req.flash('signupMessage', 'Ocorreu um erro ao cadastrar o colaborador!'));
