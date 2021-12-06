@@ -13,13 +13,24 @@ if(User.controller.signup){
 			passwordConfirm: event.target.elements.namedItem("password-confirm").value
 		};
 
-		let response = await API.response(User.signup, user);
-		if(!response) { return false; }
+		let token = await API.response(User.signup, user);
+		if(!token) { return false; }
 
-		event.target.elements.namedItem("name").value = "";
-		event.target.elements.namedItem("business").value = "";
-		event.target.elements.namedItem("email").value = "";
-		event.target.elements.namedItem("password").value = "";
-		event.target.elements.namedItem("password-confirm").value = "";
+		console.log(token);
+
+		if(token){
+			lib.localStorage.update("cotalogo-token", token);
+			// lib.localStorage.remove("cotalogo-token");
+		}
+
+		let response = await fetch("/workstation", {
+			method: "GET",
+			headers: {
+				'Authorization': "Bearer "+localStorage.getItem('cotalogo-token')
+			}
+		});
+		response = await response.json();
+
+		console.log(response);
 	});
 }

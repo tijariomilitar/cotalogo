@@ -14,5 +14,5 @@ User.signup = async (user) => {
 	if(API.verifyResponse(response)){ return false };
 	alert(response.done);
 
-	return response;
+	return response.token;
 };

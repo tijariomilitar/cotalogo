@@ -14,7 +14,7 @@ module.exports = {
 	    }
 	},
 	production: {
-	    url: 'http://www.jariomilitar.com',
+	    url: 'http://erpjariomilitar.com',
 	    database: {
 		    host: process.env.DB_PRODUCTION_HOST,
 	        port: process.env.DB_PRODUCTION_PORT,

@@ -6,6 +6,6 @@ const homeController = require("../controller/home");
 router.get("/", lib.route.toHttps, homeController.index);
 
 router.use("/user", require("./user"));
-// router.use("/product", require("./product"));
+router.use("/business", require("./business"));
 
 module.exports = router;
