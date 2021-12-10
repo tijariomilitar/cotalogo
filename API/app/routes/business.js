@@ -4,8 +4,8 @@ const lib = require('jarmlib');
 const passport = require('../../config/passport');
 
 const userController = require("../controller/user");
-const homeController = require("../controller/home");
+const businessController = require("../controller/business/main");
 
-router.get('/', lib.route.toHttps, userController.verify, userController.index);
+router.get('/', lib.route.toHttps, userController.verify, businessController.index);
 
 module.exports = router;

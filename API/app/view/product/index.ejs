@@ -5,15 +5,11 @@
 	<body>
     	<% include ./../partials/userHeader %>
         <% include ./../partials/nav %>
-		<section class="container h-center">
-			<div class='box b2-3 border ground margin-top-10 padding-10 pointer shadow-2-hover'>
-                <div class="box b1 avant-garde center padding-10 bold noselect" style="color:#323232;">Bem vindo <%= user.name %></div>
-            </div>
-		</section>
 		<section class="container">
             <form id="product-create-form" class="box b2 container border ground margin-top-10 padding-10 pointer">
-                <input type="text" name="code" class="box b4">
-                <input type="text" name="name" class="box b2">
+            	<div class="box b1 underline center">Novo Produto</div>
+                <input type="text" name="code" class="box b4 input-generic center margin-top-5" placeholder="Código">
+                <input type="text" name="name" class="box b2 input-generic center margin-top-5" placeholder="Nome do Produto">
             </form>
 		</section>
         <% include ./../partials/loader %>

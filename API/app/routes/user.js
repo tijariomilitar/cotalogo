@@ -8,9 +8,6 @@ const homeController = require("../controller/home");
 
 router.get('/', lib.route.toHttps, userController.verify, userController.index);
 
-router.get("/login", lib.route.toHttps, homeController.login);
-router.get("/signup", lib.route.toHttps, homeController.signup);
-
 router.post('/login', passport.authenticate('local-login', { 
 	failureRedirect: '/user/login',
 	failureFlash: true

@@ -1,0 +1,35 @@
+<html>
+	<head>
+        <% include ./../partials/head %>
+	</head>
+	<body>
+    	<% include ./../partials/userHeader %>
+        <% include ./../partials/nav %>
+		<section class="container">
+            <form id="color-create-form" class="box b2 container border ground margin-top-10 padding-10 pointer">
+            	<div class="box b1 underline lucida-grande bold center">Cadastrar Cor</div>
+                <input type="hidden" name="id" value="">
+                <input type="text" name="name" class="box b7-8 input-generic center margin-top-5" placeholder="Nome da Cor" autocomplete="off">
+                <button type="submit" name="submit" class="mobile-box b9 input-generic noborder margin-top-5 pointer"><img class='size-20 icon' src="/images/icon/increase.png"></button>
+            </form>
+            <div class="box b2 container border ground margin-top-10 padding-10 pointer">
+                <form id="color-filter-form" class="box b1">
+                    <div class="box b1 underline lucida-grande bold center">Buscar Cor</div>
+                    <input type="text" name="name" class="box b7-8 input-generic center margin-top-5" placeholder="Nome da Cor" autocomplete="off">
+                    <button type="submit" name="submit" class="mobile-box b9 input-generic noborder margin-top-5 pointer"><img class='size-20 icon' src="/images/icon/filter.png"></button>
+                </form>
+                <div id="color-filter-box" class="box b1 container ground padding-10 margin-top-10" style="display:none">
+                    <div id="color-filter-div" class="box b1 container"></div>
+                    <% include ./../partials/carousel %>
+                </div>
+            </div>
+		</section>
+        <% include ./../partials/loader %>
+	</body>
+	<footer>
+        <% include ./../partials/footer %>
+        <script src="/javascripts/scripts/product/model/color.js"></script>
+        <script src="/javascripts/scripts/product/view/color.js"></script>
+        <script src="/javascripts/scripts/product/controller/color.js"></script>
+	</footer>
+</html>

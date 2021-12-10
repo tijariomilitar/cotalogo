@@ -8,7 +8,7 @@ const userController = {
 	},
 	verify: (req, res, next) => {
 		if (req.isAuthenticated()){ return next() };
-		res.redirect('/user/login');
+		res.redirect('/login');
 	},
 	verifyAccess: async (req, res, access) => {
 		if(req.isAuthenticated()){

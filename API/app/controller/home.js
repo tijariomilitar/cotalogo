@@ -8,6 +8,11 @@ const homeController = {
 		};
 		res.render('index', { user: req.user });
 	},
+	business: async (req, res) => {
+		let user = await User.findByBusiness(req.params.business);
+
+		res.redirect('/');
+	},
 	login: (req, res) => {
 		if(req.user){
 			return res.redirect("/");
