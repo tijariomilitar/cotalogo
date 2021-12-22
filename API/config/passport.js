@@ -11,9 +11,6 @@ passport.serializeUser(async (user, done) => {
 });
 
 passport.deserializeUser(async (user, done) => {
-    delete user.password;
-    delete user.passwordConfirm;
-
     done(null, user);
 });
 
@@ -33,9 +30,8 @@ passport.use(
         try {
             let response = await user.save();
             if(response.err){ return done(null, false, req.flash('signupMessage', response.err)); }
-            user.id = response.insertId;
 
-            return done(null, user)
+            return done(null, { id: response.insertId, business: user.business })
         } catch (err) {
             console.log(err);
             return done(null, false, req.flash('signupMessage', 'Ocorreu um erro favor contatar o suporte!'));
@@ -61,7 +57,7 @@ passport.use(
             if (!bcrypt.compareSync(password, user[0].password)){
                 return done(null, false, req.flash('loginMessage', 'Senha inválida.'));
             };
-            return done(null, user[0]);
+            return done(null, { id: user[0].id, business: user[0].business });
         };
     })
 );

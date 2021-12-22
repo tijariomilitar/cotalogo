@@ -9,12 +9,12 @@ const homeController = require("../controller/home");
 router.get('/', lib.route.toHttps, userController.verify, userController.index);
 
 router.post('/login', passport.authenticate('local-login', { 
-	failureRedirect: '/user/login',
+	failureRedirect: '/login',
 	failureFlash: true
 }), homeController.successfulLogin);
 
 router.post('/signup', passport.authenticate('local-signup', { 
-	failureRedirect: '/user/signup',
+	failureRedirect: '/signup',
 	failureFlash: true
 }), homeController.successfulSignup);
 

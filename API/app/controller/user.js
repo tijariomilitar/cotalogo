@@ -10,6 +10,10 @@ const userController = {
 		if (req.isAuthenticated()){ return next() };
 		res.redirect('/login');
 	},
+	authorize: (req, res, next) => {
+		if (req.isAuthenticated()){ return next() };
+		res.send({ unauthorized: "Você não tem permissão para realizar esta ação!" });
+	},
 	verifyAccess: async (req, res, access) => {
 		if(req.isAuthenticated()){
 			for(let i in access){

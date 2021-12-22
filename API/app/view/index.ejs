@@ -71,17 +71,4 @@
     </section>
 </body>
 <% include ./partials/footer %>
-<script type="text/javascript">
-    API.redirect = async (route, localStorageToken) => {
-        let response = await fetch(route, {
-            method: "GET",
-            headers: {
-                'Authorization': "Bearer "+localStorage.getItem(localStorageToken)
-            }
-        });
-        response = await response.json();
-
-        console.log(response);
-    };
-</script>
 </html>

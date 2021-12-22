@@ -1,22 +1,77 @@
 <html>
-	<head>
-        <% include ./../partials/head %>
-	</head>
-	<body>
-    	<% include ./../partials/userHeader %>
-        <% include ./../partials/nav %>
-		<section class="container">
-            <form id="product-create-form" class="box b2 container border ground margin-top-10 padding-10 pointer">
-            	<div class="box b1 underline center">Novo Produto</div>
-                <input type="text" name="code" class="box b4 input-generic center margin-top-5" placeholder="Código">
-                <input type="text" name="name" class="box b2 input-generic center margin-top-5" placeholder="Nome do Produto">
-            </form>
-		</section>
-        <% include ./../partials/loader %>
-	</body>
-	<footer>
-        <% include ./../partials/footer %>
-        <% include ./partial %>
-		</script>
-	</footer>
+<head>
+  <% include ./../partials/head %>
+  <style type="text/css">
+    .message-window {
+      z-index: 9999;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <% include ./../partials/userHeader %>
+  <div id="code-help" class="container image-fit message-window h-center" style="display:none;">
+    <div class="box a5-6 container ground padding-10 border margin-top-30">
+      <div class="mobile-box a9-10"></div>
+      <img class='mobile-box center size-20 margin-top-15 icon pointer' onclick="lib.display('code-help', 'none')" src="/images/icon/close.png">
+      
+      <div class="box a1 container h-center">
+          <div class="box b2-3 em14 bold lucida-grande margin-top-10 noselect">Por que devo incluir um código em meus produtos?</div>
+          <div class="box b2-3 em09 bold underline lucida-grande noselect">A melhor forma de organizar seus produtos quanto a busca de seus clientes</div>
+          <div class="box b2-3 em14 bold lucida-grande margin-top-10 noselect"></div>
+          <div class="box b2-3 em09 bold underline lucida-grande noselect"></div>
+      </div>
+      <div class="box a1 container h-center">
+        <!-- <iframe class="box b2-3 height-350" src="https://www.youtube.com/embed/1PY2qXCL1H0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+      </div>
+    </div>
+  </div>
+  <% include ./../partials/nav %>
+  <section class="container">
+    <form id="product-create-form" class="box b2 container border ground margin-top-10 padding-10">
+      <div class="box b1 underline center">Novo Produto</div>
+      <input type="text" name="code" class="mobile-box b4-5 input-generic center margin-top-5" placeholder="Código do Produto" autocomplete="off" maxlength="6">
+      <img class='mobile-box size-20 center icon pointer noselect' onclick="lib.display('code-help', '')" src="/images/icon/help.png">
+      <input type="text" name="name" class="box b1 input-generic center margin-top-5" placeholder="Nome do Produto" autocomplete="off" maxlength="100">
+
+      <% if(colors.length) { %>
+      <select name="color" class="box b1 input-generic center margin-top-5 hide-disabled">
+        <option selected disabled value="">Selecionar Cor</option>
+        <% for(let i in colors) { %>
+        <option value="<%= colors[i].id %>"><%= colors[i].name %></option>
+        <% } %>
+      </select>
+      <% } %>
+
+      <% if(sizes.length) { %>
+      <select name="size" class="box b1 input-generic center margin-top-5 hide-disabled">
+        <option selected disabled value="">Selecionar Tamanho</option>
+        <% for(let i in sizes) { %>
+        <option value="<%= sizes[i].id %>"><%= sizes[i].name %></option>
+        <% } %>
+      </select>
+      <% } %>
+
+      <% for(let i in categories) { %>
+        <% if(categories[i].variations) { %>
+        <select name="<%= categories[i].name %>" class="box b1 input-generic center margin-top-5 hide-disabled">
+          <option selected disabled value="">Selecionar <%= categories[i].name %></option>
+          <% for(let j in categories[i].variations) { %>
+            <option value="<%= categories[i].variations[j].id %>"><%= categories[i].variations[j].name %></option>
+          <% } %>
+        </select>
+        <% } %>
+      <% } %>
+
+      <textarea name="description" class="box b1 height-80 avant-garde padding-5 margin-top-5" placeholder="Descrição do Produto"></textarea>
+
+      <input type="submit" name="submit" class="box b1 em10 bold submit-generic center margin-top-5" value="Cadastrar">
+    </form>
+  </section>
+  <% include ./../partials/loader %>
+  </body>
+  <footer>
+    <% include ./../partials/footer %>
+    <% include ./partial %>
+  </footer>
 </html>
