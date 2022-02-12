@@ -50,6 +50,7 @@ Category.controller.show = async (category_id) => {
 	Category.view.show(category[0]);
 
 	lib.display("category-show-box", '');
+	lib.display("variation-create-form", 'none');
 };
 
 Category.controller.edit = async (category_id) => {

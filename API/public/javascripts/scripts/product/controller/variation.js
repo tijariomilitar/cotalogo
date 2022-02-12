@@ -14,8 +14,7 @@ if(Variation.controller.create){
 		let response = await API.response(Variation.save, variation);
 		if(!response) { return false; }
 
-		console.log(response);
-
+		event.target.elements.namedItem("id").value = "";
 		event.target.elements.namedItem("name").value = "";
 
 		Variation.controller.filter.submit.click();
@@ -34,8 +33,6 @@ if(Variation.controller.filter){
 
 		let variations = await API.response(Variation.filter, variation);
 		if(!variations) { return false; }
-
-		console.log(variations);
 
 		const pagination = { pageSize: 10, page: 0 };
 		(function(){ lib.carousel.execute("variation-filter-box", Variation.view.filter, variations, pagination); }());

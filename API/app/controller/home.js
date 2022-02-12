@@ -1,5 +1,5 @@
-const User = require('../model/user');
-const userController = require('./user');
+// const User = require('../model/user');
+// const userController = require('./user');
 
 const homeController = {
 	index: async (req, res) => {
@@ -10,9 +10,7 @@ const homeController = {
 		res.render('index', { user: req.user });
 	},
 	business: async (req, res) => {
-		let user = await User.findByBusiness(req.params.business);
-
-		res.redirect('/');
+		res.send({ done: 'Email Enviado' });
 	},
 	login: (req, res) => {
 		if(req.user){

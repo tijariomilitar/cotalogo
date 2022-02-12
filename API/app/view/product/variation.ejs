@@ -1,79 +1,32 @@
 <html>
 	<head>
         <% include ./../partials/head %>
-        <style type="text/css">
-            .message-window {
-                z-index: 9999;
-                position: absolute;
-            }
-        </style>
 	</head>
 	<body>
-        <!-- Cazé no Urologista + Cazé no Proctologista -->
     	<% include ./../partials/userHeader %>
-        <div id="variation-help" class="container image-fit message-window h-center" style="display:none;">
-            <div class="box a5-6 container ground padding-10 border margin-top-30">
-                <div class="mobile-box a9-10"></div>
-                <img class='mobile-box center size-20 margin-top-15 icon pointer' onclick="lib.display('variation-help', 'none')" src="/images/icon/close.png">
-                
-                <div class="box a1 container h-center">
-                    <div class="box b2-3 em14 bold lucida-grande margin-top-10 noselect">O que são variações?</div>
-                    <div class="box b2-3 em09 bold underline lucida-grande noselect">Variações são caracteristicas específicas que os produtos compartilham entre si mas que podem ser diferentes, as variações mais recorrentes dos produtos em geral são as cores e os tamanhos, porém em negócios mais específicos essas variações podem ser quase qualquer coisa, como por exemplo, em uma loja de carros poderíamos ter as categorias de variação do 'Ano', 'Câmbio' e 'Quilometragem' dos veículos, já em uma loja de roupas essas categorias poderiam ser o 'Tipo de Estampa' e 'Gênero' ou para um corretor de imóveis o 'Número de quartos' das casas. Você deve encontrar e configurar as variações específicas dos seus produtos.</div>
-                    <div class="box b2-3 em14 bold lucida-grande margin-top-10 noselect">Para quê servem as variações?</div>
-                    <div class="box b2-3 em09 bold lucida-grande noselect">Tenha em mente que apenas você conhece bem seus produtos, seus clientes na maioria das vezes estarão procurando por algo que gostam e é seu dever facilitar esse processo!</div>
-                    <div class="box b2-3 em09 bold underline lucida-grande noselect">As categorias cadastradas ficarão disponíveis tanto para seleção no momento da criação dos seus produtos quanto nos filtros de busca que seus clientes utilizarão para encontrar o que desejam de forma muito mais rápida e organizada.</div>
-                </div>
-                <div class="box a1 container h-center">
-                   <iframe class="box b2-3 height-350" src="https://www.youtube.com/embed/1PY2qXCL1H0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
+        <% include ./help/variation %>
         <% include ./../partials/nav %>
 		<section class="container">
             <div class="box b2 container border-explicit ground margin-top-10 padding-10">
-                <form id="category-create-form" class="box a1 container">
-                	<div class="box a1 container center">
-                     <div class="mobile-box a11-12 lucida-grande bold">Cadastrar Categoria das variações</div>   
-                     <img class='mobile-box size-20 icon pointer noselect' onclick="lib.display('variation-help', '')" src="/images/icon/help.png">
-                    </div>
-                    <input type="hidden" name="id" value="">
-                    <input type="text" name="name" class="mobile-box b7-8 input-generic center margin-top-5" placeholder="Nome da Categoria" autocomplete="off">
-                    <button type="submit" name="submit" class="mobile-box b9 input-generic noborder margin-top-5"><img class='size-20 icon pointer noselect' src="/images/icon/increase.png"></button>
-                </form>
+                <% include ./form/category-create %>
                 <div class="box a1 container border ground margin-top-10 padding-10">
-                    <form id="category-filter-form" class="box a1">
-                        <div class="box b1 underline lucida-grande bold center">Buscar Categorias</div>
-                        <input type="text" name="name" class="mobile-box b7-8 input-generic center margin-top-5" placeholder="Nome da Categoria" autocomplete="off">
-                        <button type="submit" name="submit" class="mobile-box b9 input-generic noborder margin-top-5"><img class='size-20 icon pointer noselect' src="/images/icon/filter.png"></button>
-                    </form>
-                    <div id="category-filter-box" class="box a1 container ground margin-top-10" style="display:none">
-                        <div id="category-filter-div" class="box b1 container"></div>
-                        <% include ./../partials/carousel %>
+                    <div class="box b1 container">
+                      <div class="mobile-box b10"></div>
+                      <div class="mobile-box b4-5 em12 lucida-grande bold center">Buscar Categorias</div>
+                      <div class="mobile-box b10 center"><img class="size-20 icon noselect" src="/images/icon/expand.png" onclick="lib.displayDiv('category-filter-box', this, '/images/icon/expand.png', '/images/icon/retract.png');"></div>
                     </div>
+                    <% include ./form/category-filter %>
                 </div>
             </div>
 
             <div id="category-show-box" class="box b2 container border-explicit ground margin-top-10 padding-10" style="display:none">
-                <div class="box a1 border padding-10 margin-top-10">
-                    <div id="category-create-title" class="box a1 container lucida-grande bold center"></div>
-                    <form id="variation-create-form" class="box a1 container" style="display:none">
-                        <input type="hidden" name="id" value="">
-                        <input type="hidden" name="category-id" value="">
-                        <input type="text" name="name" class="mobile-box b7-8 input-generic center margin-top-5" placeholder="" autocomplete="off">
-                        <button type="submit" name="submit" class="mobile-box b9 input-generic noborder margin-top-5"><img class='size-20 icon pointer noselect' src="/images/icon/increase.png"></button>
-                    </form>
+                <div class="box b1 border padding-10 margin-top-10">
+                    <div id="category-create-title" class="box b1 container lucida-grande bold center"></div>
+                    <% include ./form/variation-create %>
                 </div>
-                <div class="box a1 border padding-10 margin-top-10">
+                <div class="box b1 border padding-10 margin-top-10">
                     <div id="category-filter-title" class="box b1 container lucida-grande bold center"></div>
-                    <form id="variation-filter-form" class="box a1 container">
-                        <input type="hidden" name="category-id" value="">
-                        <input type="text" name="name" class="mobile-box b7-8 input-generic center margin-top-5" placeholder="" autocomplete="off">
-                        <button type="submit" name="submit" class="mobile-box b9 input-generic noborder margin-top-5"><img class='size-20 icon pointer noselect' src="/images/icon/filter.png"></button>
-                        <div id="variation-filter-box" class="box a1 container ground margin-top-10">
-                            <div id="variation-filter-div" class="box b1 container"></div>
-                            <% include ./../partials/carousel %>
-                        </div>
-                    </form>
+                    <% include ./form/variation-filter %>
                 </div>
             </div>
 		</section>

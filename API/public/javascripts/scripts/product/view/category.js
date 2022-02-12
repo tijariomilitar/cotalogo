@@ -9,7 +9,7 @@ Category.view.filter = (categories, pagination) => {
 		let div_header = lib.element.create("div", { class: "box b1 container border em07 center" });
 		
 		div_header.appendChild(lib.element.create("div", { class: "mobile-box b10" }));
-		div_header.appendChild(lib.element.create("div", { class: "mobile-box b7-10 padding-5" }, "Nome"));
+		div_header.appendChild(lib.element.create("div", { class: "mobile-box b7-10 padding-5 bold noselect" }, "Nome"));
 		filter_div.appendChild(div_header);
 		for (let i = pagination.page * pagination.pageSize; i < categories.length && i < (pagination.page + 1) * pagination.pageSize; i++){
 			let div_category = lib.element.create("div", { class: "box b1 container box-hover padding-5 margin-top-5 border" });
@@ -33,13 +33,12 @@ Category.view.show = (category) => {
 	variation_create_title.innerHTML = "";
 	variation_create_title.appendChild(lib.element.create("div", { class: "mobile-box b9-10" }, "Cadastrar "+category.name));
 	variation_create_title.appendChild(lib.element.icon('b10', 20, "/images/icon/expand.png", "lib.displayDiv('variation-create-form', this, '/images/icon/expand.png', '/images/icon/retract.png');"));
+	document.getElementById("variation-create-form").elements.namedItem("category-id").value = category.id;
 
 	let variation_filter_title = document.getElementById("category-filter-title");
 	variation_filter_title.innerHTML = "";
 	variation_filter_title.appendChild(lib.element.create("div", { class: "mobile-box b9-10" }, "Buscar "+category.name));
 	variation_filter_title.appendChild(lib.element.icon('b10', 20, "/images/icon/retract.png", "lib.displayDiv('variation-filter-form', this, '/images/icon/expand.png', '/images/icon/retract.png');"));
-
-	document.getElementById("variation-create-form").elements.namedItem("category-id").value = category.id;
 	document.getElementById("variation-filter-form").elements.namedItem("category-id").value = category.id;
 
 	Variation.controller.filter.submit.click();

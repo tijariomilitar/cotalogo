@@ -20,6 +20,8 @@ router.post('/signup', passport.authenticate('local-signup', {
 
 router.get("/logout", lib.route.toHttps, homeController.logout);
 
+router.get("/confirm-email/:token", lib.route.toHttps, userController.confirmEmail);
+
 router.get('/list', lib.route.toHttps, userController.list);
 router.post('/show', lib.route.toHttps, userController.show);
 router.put('/updateInfo', lib.route.toHttps, userController.updateInfo);
