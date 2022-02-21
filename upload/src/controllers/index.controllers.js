@@ -20,6 +20,7 @@ const uploadFile = async (req, res) => {
             .then(async newPath => {
 				await uploadFileS3(newPath, req.file.filename.split('.')[0] + '.webp');
 				await unlinkFile(newPath);
+				await unlinkFile(req.file.path);
              })
             .catch(err => console.log(err) );
 
